@@ -10,8 +10,7 @@ const { Server } = require('socket.io');
 // 1. DEFINE ALLOWED ORIGINS (The "White List")
 const allowedOrigins = [
     "http://localhost:5173",                    
-    
-   
+    process.env.FRONTEND_URL,
 ].filter(Boolean); // Filter out undefined values
 
 // 2. CONFIGURE EXPRESS CORS (For Login/Signup/API)
