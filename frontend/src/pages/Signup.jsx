@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 export default function Signup() {
   const [form, setForm] = useState({
-    name: "", email: "", mobile: "", address: "", aadhar: "", password: ""
+    name: "", email: "", mobile: "", address: "", aadhar: "", password: "", role: "voter"
   });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -54,6 +54,11 @@ export default function Signup() {
           <input name="aadhar" type="number" onChange={handleChange} placeholder="Aadhar Number" className="w-full p-3 bg-gray-700 rounded border border-gray-600 text-white focus:outline-none focus:border-blue-500" required />
           <input name="password" type="password" onChange={handleChange} placeholder="Password" className="w-full p-3 bg-gray-700 rounded border border-gray-600 text-white focus:outline-none focus:border-blue-500" required />
           
+          <select name="role" onChange={handleChange} value={form.role} className="w-full p-3 bg-gray-700 rounded border border-gray-600 text-white focus:outline-none focus:border-blue-500">
+            <option value="voter">Voter</option>
+            <option value="admin">Admin</option>
+          </select>
+
           <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded transition-all mt-4">Sign Up</button>
         </form>
         <p className="text-gray-400 text-center mt-4 text-sm">
