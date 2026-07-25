@@ -8,10 +8,11 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Admin from "./pages/Admin";
 
-export default function App() {
-  // Check role directly for the Admin route
-  const role = localStorage.getItem("role");
+const AdminRoute = () => {
+  return localStorage.getItem("role") === "admin" ? <Admin /> : <Navigate to="/login" />;
+};
 
+export default function App() {
   return (
     <div className="bg-gray-900 min-h-screen text-white">
       {/* Navbar shows on all pages */}
@@ -27,10 +28,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
 
         {/* Protected Admin Route */}
-        <Route
-          path="/admin"
-          element={role === "admin" ? <Admin /> : <Navigate to="/login" />}
-        />
+        <Route path="/admin" element={<AdminRoute />} />
       </Routes>
     </div>
   );
