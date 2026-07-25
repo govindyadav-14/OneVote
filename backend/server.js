@@ -7,24 +7,18 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const { Server } = require('socket.io');
 
-// 1. DEFINE ALLOWED ORIGINS (The "White List")
-const allowedOrigins = [
-    "http://localhost:5173",                    
-    process.env.FRONTEND_URL,
-].filter(Boolean); // Filter out undefined values
-
-// 2. CONFIGURE EXPRESS CORS (For Login/Signup/API)
+// 1. CONFIGURE EXPRESS CORS (For Login/Signup/API)
 app.use(cors({
-    origin: allowedOrigins,
+    origin: true, // Automatically reflect requesting origin
     credentials: true
 }));
 
 const server = http.createServer(app);
 
-// 3. CONFIGURE SOCKET.IO CORS (For Live Results)
+// 2. CONFIGURE SOCKET.IO CORS (For Live Results)
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins, // Reuse the same list
+    origin: true, // Automatically reflect requesting origin
     methods: ["GET", "POST"],
     credentials: true
   }
